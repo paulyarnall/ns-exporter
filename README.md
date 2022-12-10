@@ -19,8 +19,8 @@ arguments:
 	mongo-db        - MongoDb database name
 	ns-uri          - Nightscout server url to download from
 	ns-token        - Nigthscout server API Authorization Token
-	limit           - number of records to read from MongoDb
-	skip            - number of records to skip from MongoDb
+	limit           - number of records to read per request
+	skip            - number of records to skip from beginning (`skip=100 take=50` means 'take records from 101 to 150')
 	influx-uri      - InfluxDb uri to download from
 	influx-token    - InfluxDb access token
 	influx-org      - (optional, default = 'ns') InfluxDb organization to use
