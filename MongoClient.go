@@ -81,7 +81,7 @@ func (c MongoClient) LoadDeviceStatuses(queue chan NsEntry, limit int64, skip in
 		}
 		entry.User = c.user
 		if entry.OpenAps.Suggested.Bg > 0 {
-			field := cur.Current.Lookup("openaps", "suggested", "tick")
+			field := cur.Current.Lookup("openaps", "enacted", "tick")
 			var tick float64 = 0
 			if field.Type == bsontype.String {
 				tick, err = strconv.ParseFloat(field.StringValue(), 32)
@@ -96,7 +96,7 @@ func (c MongoClient) LoadDeviceStatuses(queue chan NsEntry, limit int64, skip in
 
 		count++
 
-		fmt.Println("devicestatus time: ", entry.OpenAps.IOB.Time, "iob:", entry.OpenAps.IOB.IOB, ", bg: ", entry.OpenAps.Suggested.Bg)
+		fmt.Println("devicestatus time: ", entry.OpenAps.IOB.Time, "iob:", entry.OpenAps.IOB.IOB, ", bg: ", entry.OpenAps.Enacted.Bg)
 	}
 	fmt.Println("total devicestatuses sent: ", count)
 	if err := cur.Err(); err != nil {
