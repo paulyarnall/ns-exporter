@@ -80,7 +80,7 @@ func (c MongoClient) LoadDeviceStatuses(queue chan NsEntry, limit int64, skip in
 			log.Fatal(err)
 		}
 		entry.User = c.user
-		if entry.OpenAps.Suggested.Bg > 0 {
+		if entry.OpenAps.Enacted.Bg > 0 {
 			field := cur.Current.Lookup("openaps", "enacted", "tick")
 			var tick float64 = 0
 			if field.Type == bsontype.String {
@@ -89,7 +89,7 @@ func (c MongoClient) LoadDeviceStatuses(queue chan NsEntry, limit int64, skip in
 			if field.Type == bsontype.Int32 {
 				tick = float64(field.AsInt64())
 			}
-			entry.OpenAps.Suggested.Tick = tick
+			entry.OpenAps.Enacted.Tick = tick
 		}
 
 		queue <- entry
